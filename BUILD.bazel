@@ -1,0 +1,22 @@
+# APIs exposed with dynamic linking. Useful for Dart FFI.
+cc_library(
+    name = "dart_api_dl",
+    srcs = ["runtime/include/dart_api_dl.c"],
+    hdrs = [
+        "runtime/include/dart_api.h",
+        "runtime/include/dart_api_dl.h",
+        "runtime/include/dart_native_api.h",
+        "runtime/include/dart_version.h",
+        "runtime/include/internal/dart_api_dl_impl.h",
+    ],
+    copts = [
+        # Required for __declspec(dllexport) on Windows.
+        "-DDART_SHARED_LIB",
+        "-Wno-implicit-fallthrough",
+    ],
+    includes = [
+        "runtime/",
+        "runtime/include/",
+    ],
+    visibility = ["//visibility:public"],
+)
