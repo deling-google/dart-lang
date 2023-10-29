@@ -12,7 +12,9 @@ cc_library(
     copts = [
         # Required for __declspec(dllexport) on Windows.
         "-DDART_SHARED_LIB",
-        "-Wno-implicit-fallthrough",
+        # TODO: select based on the compiler
+        # "-Wno-implicit-fallthrough",
+        "/wd26819",
     ],
     includes = [
         "runtime/",
